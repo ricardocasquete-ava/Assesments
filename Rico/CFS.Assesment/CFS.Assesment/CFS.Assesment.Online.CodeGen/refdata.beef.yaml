@@ -1,0 +1,9 @@
+﻿entityScope: Autonomous
+refDataWebApiRoute: api/v1/ref
+appBasedAgentArgs: true
+databaseSchema: Online
+entities:
+  # The following is an example read-only reference data Entity accessing a SQL Database using Stored Procedures.
+  - { name: CardinalPosition, refDataType: int, Collection: true, webApiRoutePrefix: api/v1/ref/cardinalPositions, autoImplement: None, constType: string }
+  - { name: RoverOperation, refDataType: int, Collection: true, webApiRoutePrefix: api/v1/ref/roverOperation, autoImplement: None }
+  - { name: UserContext, refDataType: int, Collection: true, webApiRoutePrefix: api/v1/ref/userContext, autoImplement: None }

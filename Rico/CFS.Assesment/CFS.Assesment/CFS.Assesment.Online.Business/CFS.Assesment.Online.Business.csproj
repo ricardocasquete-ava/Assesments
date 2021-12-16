@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Beef.Core" Version="4.2.3" />
+    <PackageReference Include="Beef.Data.Database" Version="4.2.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataSvc\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CFS.Assesment.Framework.RulesEngine\CFS.Assesment.Framework.RulesEngine.csproj" />
+  </ItemGroup>
+</Project>

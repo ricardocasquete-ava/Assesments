@@ -1,0 +1,2 @@
+﻿CREATE SCHEMA [Online]
+    AUTHORIZATION [dbo];

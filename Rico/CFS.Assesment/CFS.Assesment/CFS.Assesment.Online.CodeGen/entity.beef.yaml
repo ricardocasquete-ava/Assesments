@@ -1,0 +1,54 @@
+﻿entityScope: Autonomous
+eventSubjectRoot: CFS.Assesment
+eventSubjectFormat: NameOnly
+eventActionFormat: PastTense
+eventSourceRoot: CFS.Assesment/Online
+eventSourceKind: Relative
+eventOutbox: Database
+appBasedAgentArgs: true
+webApiAutoLocation: true
+refDataText: true
+databaseSchema: Online
+entities:
+  # The following is an example Entity with CRUD operations defined accessing a SQL Database using Stored Procedures.
+
+- { name: Plateau, text: 'Mars Plateau', collection: false, collectionResult: false, excludeAll: true,
+    properties: [
+      { name: Height, text: 'Height of the Plateau', type: int },
+      { name: Length, text: 'Length of the Plateau', type: int }
+    ]
+  }
+
+- { name: RoverPosition, text: 'Position of the Rovers within a Plateau', collection: false, collectionResult: false, excludeAll: true,
+    properties: [
+      { name: XCoordinate, text :'Longitude from the horizontal axis', type: int },
+      { name: YCoordinate, text : 'Latitude from the vertial axis', type : int },
+      { name: Orientation, type: ^CardinalPosition, nullable: false }
+    ]
+  }
+
+- { name : RoverController, text : 'Mars Rover Controller', collection: false, collectionResult: false, validator: RoverControllerValidator, webApiRoutePrefix: api/v1/roverController, autoImplement: None, get : false, dataSvcCaching: false,
+    properties: [
+        { name: Plateau, text: 'The Plateu where the rover is located', type: Plateau, nullable: false },
+        { name: Position, text:'The location where the rover is located within the Plateu', type: RoverPosition, nullable: false }
+    ],
+    operations: [
+      { name: MoveOne, type: Update, autoImplement: None,  eventOutbox: None, eventPublish: None, webApiRoute: 'MoveOne',
+        parameters: [
+          { name: Operation, type: ^RoverOperation, nullable: false }
+        ]
+      },
+      { name: MoveMany, type: Update, autoImplement: None,  eventOutbox: None, eventPublish: None, webApiRoute: 'MoveMany',
+        parameters: [
+          { name: Operations, type: string, nullable: false  }
+        ]
+      }
+    ]
+  }
+
+- { name : Patterns, text : 'Entry Point for the Patterns: Singleton, Factory and Abstract Factory', get: true, autoImplement: None,
+    properties: [
+        { name : Id, type : string, uniqueKey: true, text: "Valid Values are [Teen, Retiree, Expat] - Any other value revents to default implementation" },
+        { name: Response, text: 'Company Response', type: string, nullable: false },
+    ]
+  }
