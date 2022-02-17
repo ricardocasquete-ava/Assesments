@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ConcreteCreator\**" />
+    <Compile Remove="ConcreteProduct\**" />
+    <Compile Remove="Creator\**" />
+    <EmbeddedResource Remove="ConcreteCreator\**" />
+    <EmbeddedResource Remove="ConcreteProduct\**" />
+    <EmbeddedResource Remove="Creator\**" />
+    <None Remove="ConcreteCreator\**" />
+    <None Remove="ConcreteProduct\**" />
+    <None Remove="Creator\**" />
+  </ItemGroup>
+
+</Project>
